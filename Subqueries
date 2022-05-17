@@ -26,7 +26,7 @@ WHERE d.city IN ('Aurora',
                  )
 GROUP BY b.customer_id, b.first_name, b.last_name, d.city, e.country
 ORDER BY highest_pmt DESC
-LIMIT 5;) 
+LIMIT 5) 
 AS average;
 
 
@@ -35,16 +35,16 @@ AS average;
 Query_2: This is a SQL query that finds how many of the top 5 customers are based within each country:
 
 SELECT country.country, 
-	     COUNT(DISTINCT customer.customer_id) AS all_customer_count,
-		   COUNT(DISTINCT top_5_customers) AS top_customer_count
+	COUNT(DISTINCT customer.customer_id) AS all_customer_count,
+	COUNT(DISTINCT top_5_customers) AS top_customer_count
 FROM customer
-INNER JOIN address ON customer.address_id = address.address_ID
-INNER JOIN city ON address.city_id = city.city_id
-INNER JOIN country ON city.country_id = country.country_id
-INNER JOIN
+LEFT JOIN address ON customer.address_id = address.address_ID
+LEFT JOIN city ON address.city_id = city.city_id
+LEFT JOIN country ON city.country_id = country.country_id
+LEFT JOIN
 (SELECT b.customer_id,
         b.first_name, 
-	      b.last_name, 
+	b.last_name, 
        	SUM(a.amount) AS highest_pmt,
       	d.city,
       	e.country
