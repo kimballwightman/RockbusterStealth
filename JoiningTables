@@ -1,0 +1,10 @@
+This is a SQL query that finds the top 10 countries for Rockbuster in terms of customer numbers:
+
+SELECT d.country, COUNT(a.customer_id) AS customer_count
+FROM customer a
+INNER JOIN address b ON a.address_id = b.address_ID
+INNER JOIN city c ON b.city_id = c.city_id
+INNER JOIN country d ON c.country_id = d.country_id
+GROUP BY d.country
+ORDER BY COUNT(a.customer_id) DESC
+LIMIT 10;
