@@ -11,7 +11,7 @@ LIMIT 10;
 
 
 
-Query_2: This is a SQL query that finds the top 10 cities within the top 10 countries identified in Query_1.
+Query_2: This is a SQL query that finds the top 10 cities within the top 10 countries identified in Query_1:
 
 SELECT c.city, d.country, COUNT(a.customer_id) AS customer_count
 FROM customer a
